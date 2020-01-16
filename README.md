@@ -1,5 +1,6 @@
 # vrecord-rpm
  - RPM spec file for [Vrecord](https://github.com/amiaopensource/vrecord)
+ - You can find RPM builds on [COPR](https://copr.fedorainfracloud.org/coprs/lsde/vrecord/)
  - Assumes that available RPM repositories contain a build of FFmpeg with `--enable-decklink`.
  - Repositories with tested FFmpeg build:
    - [epel-multimedia](https://negativo17.org/repos/epel-multimedia.repo) for RHEL/CentOS
