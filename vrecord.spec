@@ -24,11 +24,14 @@ Vrecord is open-source software for capturing a video signal and turning it into
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mv Resources/Documentation .
+gzip vrecord.1
 mkdir -p %{buildroot}/%{_bindir}
 mkdir -p %{buildroot}/%{_datadir}/%{name}
+mkdir -p %{buildroot}/%{_mandir}/man1
 install -m 0755 %{name} %{buildroot}/%{_bindir}/%{name}
 install -m 0755 vtest %{buildroot}/%{_bindir}/vtest
-mv Resources/Documentation .
+cp %{name}.1.gz %{buildroot}/%{_mandir}/man1/
 cp -p Resources/* %{buildroot}/%{_datadir}/%{name}
 
 
@@ -40,6 +43,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc README.md
 %doc Documentation/*
+%doc %{_mandir}/man1/%{name}.1.gz
 %{_bindir}/%{name}
 %{_bindir}/vtest
 %{_datadir}/%{name}
@@ -47,5 +51,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-
+* Thu Jan 16 2020 - Jonáš Svatoš <jonas.svatos@nfa.cz>
+- Initial version
 
