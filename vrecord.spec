@@ -4,8 +4,8 @@ Release:        1%{?dist}
 Summary:        Vrecord is open-source software for capturing a video signal and turning it into a digital file.
 
 License:        CC-BY 4.0
-URL:            https://github.com/NFAcz/vrecord
-Source0:        https://github.com/NFAcz/vrecord/archive/master.zip
+URL:            https://github.com/amiaopensource/vrecord
+Source0:        https://github.com/amiaopensource/vrecord/archive/master.zip
 Patch0:         vrecord-bypass-homebrew.patch
 Patch1:         vrecord-xdg-open.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
