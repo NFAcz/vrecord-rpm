@@ -8,6 +8,7 @@ URL:            https://github.com/amiaopensource/vrecord
 Source0:        https://github.com/amiaopensource/vrecord/archive/master.zip
 Patch0:         vrecord-bypass-homebrew.patch
 Patch1:         vrecord-xdg-open.patch
+Patch2:         vrecord-add-desktop-file.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
@@ -21,6 +22,7 @@ Vrecord is open-source software for capturing a video signal and turning it into
 
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -28,10 +30,12 @@ mv Resources/Documentation .
 gzip vrecord.1
 mkdir -p %{buildroot}/%{_bindir}
 mkdir -p %{buildroot}/%{_datadir}/%{name}
+mkdir -p %{buildroot}/%{_datadir}/applications
 mkdir -p %{buildroot}/%{_mandir}/man1
 install -m 0755 %{name} %{buildroot}/%{_bindir}/%{name}
 install -m 0755 vtest %{buildroot}/%{_bindir}/vtest
 cp %{name}.1.gz %{buildroot}/%{_mandir}/man1/
+cp %{name}.desktop %{buildroot}/%{_datadir}/applications/
 cp -p Resources/* %{buildroot}/%{_datadir}/%{name}
 
 
@@ -47,6 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/%{name}
 %{_bindir}/vtest
 %{_datadir}/%{name}
+%{_datadir}/applications/%{name}.desktop
 
 
 

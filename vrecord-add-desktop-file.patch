@@ -1,0 +1,16 @@
+diff --git a/vrecord.desktop b/vrecord.desktop
+new file mode 100644
+index 0000000..083585b
+--- /dev/null
++++ b/vrecord.desktop
+@@ -0,0 +1,10 @@
++[Desktop Entry]
++Name=Vrecord
++Comment=Vrecord is open-source software for capturing a video signal and turning it into a digital file.
++Exec=vrecord -g
++Terminal=true
++Type=Application
++Encoding=UTF-8
++Icon=/usr/share/vrecord/vrecord_logo.png
++Categories=Multimedia;
++
