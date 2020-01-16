@@ -1,0 +1,54 @@
+diff --git a/vrecord b/vrecord
+index 14ed26f..4195ca6 100755
+--- a/vrecord
++++ b/vrecord
+@@ -12,7 +12,7 @@ if [[ $(dirname "$(command -v "${0}")") = "/usr/local/bin" ]] ; then
+     VERSION=$(TMP=$(brew info vrecord | grep ".*\*$" | grep -Eo "/vrecord/.* \(") ; echo "${TMP:9:(${#TMP}-11)}")
+     RESOURCE_PATH="$(brew --prefix vrecord)"
+ else
+-    RESOURCE_PATH="${SCRIPTDIR}/Resources"
++    RESOURCE_PATH="/usr/share/vrecord"
+ fi
+ 
+ unset INPUTOPTIONS
+@@ -27,10 +27,10 @@ unset EXTRAOUTPUTS
+ SAT_OUTLIER_THRSHLD=14
+ AUD_OUTLIER_THRSHLD=10
+ BRNG_OUTLIER_THRSHLD=14
+-BREW_PREFIX=$(brew --prefix ffmpegdecklink 2>/dev/null)
+-FFMPEG_DECKLINK="${BREW_PREFIX}/bin/ffmpeg-dl"
+-FFPLAY_DECKLINK="${BREW_PREFIX}/bin/ffplay-dl"
+-FFPROBE_DECKLINK="${BREW_PREFIX}/bin/ffprobe-dl"
++BREW_PREFIX=/usr
++FFMPEG_DECKLINK="${BREW_PREFIX}/bin/ffmpeg"
++FFPLAY_DECKLINK="${BREW_PREFIX}/bin/ffplay"
++FFPROBE_DECKLINK="${BREW_PREFIX}/bin/ffprobe"
+ MPVOPTS=(--no-osc)
+ MPVOPTS+=(--load-scripts=no)
+ MPVOPTS+=(--script "${RESOURCE_PATH}/qcview.lua")
+diff --git a/vtest b/vtest
+index 02425de..62621d5 100755
+--- a/vtest
++++ b/vtest
+@@ -10,9 +10,9 @@ unset VERSION
+ if [[ $(dirname "$(command -v "${0}")") = "/usr/local/bin" ]] ; then
+     VERSION=$(TMP=$(brew info vrecord | grep ".*\*$" | grep -Eo "/vrecord/.* \(") ; echo "${TMP:9:(${#TMP}-11)}")
+ fi
+-BREW_PREFIX=$(brew --prefix ffmpegdecklink 2>/dev/null)
+-FFMPEG_DECKLINK=("${BREW_PREFIX}/bin/ffmpeg-dl")
+-FFPLAY_DECKLINK=("${BREW_PREFIX}/bin/ffplay-dl")
++BREW_PREFIX=/usr
++FFMPEG_DECKLINK=("${BREW_PREFIX}/bin/ffmpeg")
++FFPLAY_DECKLINK=("${BREW_PREFIX}/bin/ffplay")
+ DEVICE_NAME=$("${FFMPEG_DECKLINK[@]}" -f decklink -list_devices 1 -i dummy 2>&1 | grep -o "^\[decklink[^\]*][^']*'.*" | cut -d "'" -f2- | sed "s/'$//g")
+ 
+ if [[ "$("${FFMPEG_DECKLINK[@]}" -version 2>&1 | grep "Library not loaded" >/dev/null)" || ! -f "${FFMPEG_DECKLINK}" || ! -f "${FFPLAY_DECKLINK}" ]] ; then
+@@ -47,7 +47,7 @@ Usage: ${SCRIPTNAME} [ -n | -p | -a | -l | -e | -f optionaltestfile | -h ]
+ try running:
+     [ffmpegdecklink location] -f decklink -list_formats 1 -i [BlackMagic device name]
+ e.g.
+-    /usr/local/opt/ffmpegdecklink/bin/ffmpeg-dl -f decklink -list_formats 1 -i 'UltraStudio 3D'
++    /usr/local/opt/ffmpegdecklink/bin/ffmpeg -f decklink -list_formats 1 -i 'UltraStudio 3D'
+ 
+ EOF
+ }
