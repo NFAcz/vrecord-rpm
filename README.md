@@ -7,5 +7,4 @@
    - [fedora-multimedia](https://negativo17.org/repos/fedora-multimedia.repo) for recent Fedora releases
  - Contains following patches:
    - replace hardcoded paths for AMIA's Homebrew [FFmpeg build](https://github.com/amiaopensource/homebrew-amiaos), with standard POSIX binary path.
-   - replace `open` (which is nonexistent on Linux) with `xdg-open`
    - add .desktop file entry to have a nice menu shortcut, which opens GUI mode on top of terminal emulator.

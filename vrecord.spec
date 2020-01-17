@@ -4,11 +4,10 @@ Release:        1%{?dist}
 Summary:        Vrecord is open-source software for capturing a video signal and turning it into a digital file.
 
 License:        CC-BY 4.0
-URL:            https://github.com/amiaopensource/vrecord
-Source0:        https://github.com/amiaopensource/vrecord/archive/master.zip
+URL:            https://github.com/NFAcz/vrecord
+Source0:        https://github.com/NFAcz/vrecord/archive/master.zip
 Patch0:         vrecord-bypass-homebrew.patch
-Patch1:         vrecord-xdg-open.patch
-Patch2:         vrecord-add-desktop-file.patch
+Patch1:         vrecord-add-desktop-file.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
@@ -22,7 +21,6 @@ Vrecord is open-source software for capturing a video signal and turning it into
 
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -56,6 +54,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Jan 17 2020 - Jonáš Svatoš <jonas.svatos@nfa.cz>
+- Remove patch 'vrecord-xdg-open.patch' as it was upstreamed
+
 * Thu Jan 16 2020 - Jonáš Svatoš <jonas.svatos@nfa.cz>
 - Initial version
 
