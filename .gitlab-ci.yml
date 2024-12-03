@@ -1,0 +1,16 @@
+build_rpm:
+  image: rockylinux:8
+  stage: build
+  script:
+    - dnf install -y rpm-build rpmdevtools dnf-utils
+    - rpmdev-setuptree
+    - cp *.spec ~/rpmbuild/SPECS/
+    - cd /root/rpmbuild/SPECS/
+    - spectool -g -R *.spec
+    - rpmbuild -ba *.spec
+    - mkdir -p ${CI_PROJECT_DIR}/rpms
+    - cp -r /root/rpmbuild/RPMS/* ${CI_PROJECT_DIR}/out/
+  artifacts:
+    paths:
+      - out/
+    when: on_success
